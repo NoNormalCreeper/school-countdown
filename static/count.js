@@ -21,9 +21,9 @@ function countdown(){
     // init
     var date_n=new Date();
     var date_s=new Date(holiday_start);
+    // var date_e_tmp=new Date(holiday_end);
+    // var date_e=date_e_tmp.getFullYear()+'-'+(date_e_tmp.getMonth()+1)+'-'+date_e_tmp.getDate()+' '+date_e_tmp.getHours()+':'+date_e_tmp.getMinutes()+':'+date_e_tmp.getSeconds();
     var date_e=new Date(holiday_end);
-    var date_x=new Date(next_holiday);
-    var wrong_date=new Date("xadjij13");
     // var yyyy=date_n.getFullYear();
     // var MM=date_n.getMonth();
     // var dd=date_n.getDate();
@@ -33,7 +33,7 @@ function countdown(){
     // var ms=date_n.getMilliseconds();
 
     // calc
-    diff_time0 = (date_e-date_n); // 时间差(ms)
+    var diff_time0 = (date_e-date_n); // 时间差(ms)
     var diff_time = diff_time0/1000;      // 时间差(s)
     var days = parseInt(diff_time/86400); // 天  24*60*60*1000 
     var hours = format(parseInt(diff_time/3600)-24*days);    // 小时 60*60 总小时数-过去的小时数=现在的小时数 
@@ -46,7 +46,9 @@ function countdown(){
     var timerDiv=document.getElementById("timer");
     timerDiv.innerHTML=output;
     var percentDiv=document.getElementById("percent");
-    percentDiv.innerHTML=("<b>"+(percent.toLocaleString())+"</b> %");
+    percentDiv.innerHTML=("<b>"+percent+"</b> %");
+
+    // TODO: 格式化带T的时间格式
 }
 
 function submitEdit(){
