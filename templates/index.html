@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>幸福倒计时</title>
-        <link type="text/css" rel="stylesheet" href="../static/style.css">
-    </head>
-    <body onload="start();">
-        <script type="text/javascript" src="../static/count.js"></script>
-        <div id="title">待定</div>
-        <div id="timer">Loading...</div>
-        <div id="percent">Loading...</div>
-        <div>开学时间不对？在此修改 → </div>
-        <input type="datetime-local" value="2022-2-13 16:30:00" id="edit" />
-        <button onclick="submitEdit();" id="submit">提交</button>
-        <button onclick="resetHolidayEnd();" id="reset">恢复默认</button>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block title %}网站首页{% endblock %}
+{% block body %}
+{{ super() }}
+<script type="text/javascript" src="../static/count.js"></script>
+<div id="title">待定</div>
+<div id="timer">Loading...</div>
+<div id="percent">Loading...</div>
+<div>开学时间不对？在此修改 → </div>
+<input type="datetime-local" value="2022-2-13 16:30:00" id="edit" />
+<button onclick="submitEdit();" id="submit">提交</button>
+<button onclick="resetHolidayEnd();" id="reset">恢复默认</button>
+{% endblock %}
