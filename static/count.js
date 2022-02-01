@@ -45,10 +45,15 @@ function countdown(){
     var output=("距离开学(<i>"+holiday_end+"</i>)还有<b>"+days+"</b>天<b>"+hours+"</b>小时<b>"+minutes+"</b>分钟<b>"+seconds+"</b>秒 (即<b>"+((diff_time.toFixed(3)).toLocaleString())+"</b>秒)")
     var timerDiv=document.getElementById("timer");
     timerDiv.innerHTML=output;
-    var percentDiv=document.getElementById("percent");
-    percentDiv.innerHTML=("<b>"+percent+"</b> %");
+    // var percentDiv=document.getElementById("percent");
+    // percentDiv.innerHTML=("<b>"+percent+"</b> %");
 
-    // TODO: 格式化带T的时间格式
+    // generate progress bar
+    var barDiv=document.getElementById("bar1")
+    barDiv.setAttribute("style",("width: "+percent+"%"));
+    barDiv.innerHTML=("<b>"+percent+"%</b>");
+
+
 }
 
 function submitEdit(){
