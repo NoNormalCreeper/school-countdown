@@ -6,7 +6,11 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 
 
-@app.route("/")  # 直接打开网站
+@app.route("/debug") 
+def debug():
+    return render_template("debug.html")
+
+@app.route("/")
 def index():
     return render_template("index.html")
 

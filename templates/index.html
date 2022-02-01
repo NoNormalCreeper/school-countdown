@@ -1,29 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <title>幸福倒计时</title>
+        <link type="text/css" rel="stylesheet" href="../static/style.css">
     </head>
-
     <body onload="start();">
-        <h1>Hello, World!</h1>
-        <p><div id="time"></p>
-        <script>
-            function displayTime(){
-                var date = new Date();
-                var yyyy=date.getFullYear();
-                var MM=date.getMonth();
-                var dd=date.getDate();
-                var hh=date.getHours();
-                var mm=date.getMinutes();
-                var ss=date.getSeconds();
-                var ms=date.getMilliseconds();
-                var time=document.getElementById("time");
-                time.innerHTML = ("Time: "+yyyy+"-"+MM+"-"+dd+" "+hh+":"+mm+":"+ss+"."+ms);
-            }
-
-            function start(){
-                window.setInterval("displayTime()",1);
-            }
-        </script>
+        <script type="text/javascript" src="../static/count.js"></script>
+        <div id="title">待定</div>
+        <div id="timer">Loading...</div>
+        <div id="percent">Loading...</div>
     </body>
 </html>
