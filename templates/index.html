@@ -4,18 +4,24 @@
 {{ super() }}
 <script type="text/javascript" src="../static/count.js"></script>
 <div id="title">待定</div>
-<div id="timer">Loading...</div>
+<div id="timer" style="text-align:center;">Loading...</div>
 <!-- <div id="percent">Loading...</div> -->
-<div class="progress">
+<div class="progress" style="height: 2em;">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10"
         aria-valuemin="0" aria-valuemax="100" style="width: 0%" id="bar1"></div>
 </div>
-<div id="editTime" class="shadow p-3 mb-5 bg-white rounded">
-    <div>开学时间不对？在此修改 → </div>
-    <input type="datetime-local" value="2022-2-13 16:30:00" id="edit" />
-    <button type="button" onclick="submitEdit();" class="btn btn-primary" id="submit">提交</button>
-    <button type="button" onclick="resetHolidayEnd();" class="btn btn-light" id="reset">恢复默认</button>
-</div>
+<!-- <div id="editTime" class="shadow p-3 mb-5 bg-white rounded"> -->
+    <div class="card" style="width: 18rem; margin-top: 1em; text-align: center; display: inline-block">
+        <div class="card-body">
+            <h5 class="card-title">开学时间不对？</h5>
+            <h6 class="card-subtitle mb-2 text-muted">在此处调整</h6>
+            <input type="datetime-local" value="2022-2-13 16:30:00" id="edit" style="margin-bottom:0.5em; background-color:#f7f8fa; border: 0px;" />
+            <p>
+                <button type="button" onclick="submitEdit();" class="btn btn-primary shadow lift me-1" id="submit">提交</button>
+                <button type="button" onclick="resetHolidayEnd();" style="background-color: eaeffd;" class="btn btn-primary-soft lift" id="reset">恢复默认</button>
+            </p>
+        </div>
+    <!-- </div> -->
 
 
-{% endblock %}
+    {% endblock %}
