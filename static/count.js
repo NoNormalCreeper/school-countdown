@@ -87,6 +87,10 @@ function closeEditCard(){
     window.setInterval("disappear();",100);
 }
 
+function jumpToGithub(){
+    window.location="https://github.com/NoNormalCreeper/school-countdown";
+}
+
 function start(){
     var width=document.body.offsetWidth;
     if(width>700){
