@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>幸福倒计时</title>
-    <link rel="shortcut icon" href="../lib/icon.ico">
+    <link rel="shortcut icon" href="../static/icon.ico">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../static/style.css">
     <style>
@@ -65,7 +65,7 @@
     </style>
 </head>
 
-<body onload="start();" background="/lib/background.jpg">
+<body onload="start();" background="../static/background.jpg">
     <!-- <script src="https://unpkg.com/spacingjs" defer></script>定位插件 按住alt选择元素以查看该元素与其他元素间的位置关系 -->
     <script type="text/javascript" src="../static/count.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
@@ -79,7 +79,7 @@
         <div class="acounter" onload="start();">
             <div class="tmr" id="timer"><div class="spinner-border text-muted"><span class="visually-hidden">Loading...</span></div></div>
             <!-- <div id="percent">Loading...</div> -->
-            <div class="progress" style="height: 2em;width:650px;margin-top: 2em;">
+            <div class="progress" style="height: 2em;width:70vw;margin-top: 2em;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
                     aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 0%;display: inline;"
                     id="bar1"></div>

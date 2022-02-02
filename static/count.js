@@ -92,6 +92,7 @@ function jumpToGithub(){
 }
 
 function start(){
+    window.setTimeout("",400);  // 展示加载环
     var width=document.body.offsetWidth;
     if(width>700){
         document.getElementById("bar1").setAttribute("style",("width: 700px"));
