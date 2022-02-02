@@ -1,13 +1,8 @@
 // config
-holiday_start="2022-1-14 17:00:00";    // 放假时间
-default_holiday_end="2022-2-13 16:30:00";     // 默认开学时间
-next_holiday="2022-7-10 00:30:00";    // 下一次放假时间估算值
+holiday_start="2022/1/14 17:00:00";    // 放假时间
+default_holiday_end="2022/2/13 16:30:00";     // 默认开学时间
+next_holiday="2022/7/10 00:30:00";    // 下一次放假时间估算值
 
-if(sessionStorage.getItem('holiday_end')){
-    holiday_end=sessionStorage.getItem('holiday_end');
-}else{
-    holiday_end=default_holiday_end;
-}
 
 function format(num){   // 转换为2位数
     if(num>=10){
@@ -19,8 +14,13 @@ function format(num){   // 转换为2位数
 
 function countdown(){
     // init
+    if(sessionStorage.getItem('holiday_end')){
+        holiday_end=sessionStorage.getItem('holiday_end');
+    }else{
+        holiday_end=default_holiday_end;
+    }
     var date_n=new Date();
-    var date_s=new Date(holiday_start);
+    var date_s=new Date(holiday_start); 
     // var date_e_tmp=new Date(holiday_end);
     // var date_e=date_e_tmp.getFullYear()+'-'+(date_e_tmp.getMonth()+1)+'-'+date_e_tmp.getDate()+' '+date_e_tmp.getHours()+':'+date_e_tmp.getMinutes()+':'+date_e_tmp.getSeconds();
     var date_e=new Date(holiday_end);
