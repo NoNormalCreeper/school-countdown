@@ -2,6 +2,7 @@
 import os, time
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
+import getSaying
 
 app = Flask(__name__)
 
@@ -10,9 +11,13 @@ app = Flask(__name__)
 def debug():
     return render_template("debug.html")
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    s=getSaying.getSaying()
+    data={
+        "s":s
+    }
+    return render_template("index.html",data=data)
 
 @app.errorhandler(404)  # 404页面
 def not_found(e):

@@ -1,6 +1,8 @@
 libs=[
     "flask",
-    "flask_bootstrap"
+    "flask_bootstrap",
+    "requests",
+    "json"
 ]
 
 import os
