@@ -5,3 +5,57 @@
 .button{
     box-shadow:  0 .5rem 1rem rgba(black, .15);
 }
+
+/* .container {
+    height: 85vh;
+    width: 100vw;
+    text-align: center;
+    position: fixed;
+    top: 15vh;
+    margin: 0 auto;
+} */
+
+.acounter {
+    position: fixed;
+    top:15vh;
+    display: inline-block;
+    position: relative;
+    margin: 10vh;
+
+}
+
+.tmr {
+    height: 15vh;
+}
+
+.card {
+    display: block;
+    position: relative;
+    top:20vh;
+    padding: 10px;
+    border-color: transparent;
+    background-color: transparent;
+    text-align: center;
+    opacity: 1.0;
+}
+
+.bkg {
+    position: absolute;
+    width: auto;
+    height: auto;
+    opacity: 30%;
+}
+
+#info{
+    position: fixed;
+    top:1vh;
+    left:1vh;
+    height: 3vh;
+    opacity: 70%;
+}
+
+#saying{
+    margin: 0 auto;
+    color: #7d8088;
+    text-align: center;
+}
