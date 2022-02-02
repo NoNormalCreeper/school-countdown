@@ -8,61 +8,6 @@
     <link rel="shortcut icon" href="../static/icon.ico">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../static/style.css">
-    <style>
-        /* .container {
-            height: 85vh;
-            width: 100vw;
-            text-align: center;
-            position: fixed;
-            top: 15vh;
-            margin: 0 auto;
-        } */
-
-        .acounter {
-            position: fixed;
-            top:15vh;
-            display: inline-block;
-            position: relative;
-            margin: 10vh;
-
-        }
-
-        .tmr {
-            height: 15vh;
-        }
-
-        .card {
-            display: block;
-            position: relative;
-            top:20vh;
-            padding: 10px;
-            border-color: transparent;
-            background-color: transparent;
-            text-align: center;
-            opacity: 1.0;
-        }
-
-        .bkg {
-            position: absolute;
-            width: auto;
-            height: auto;
-            opacity: 30%;
-        }
-
-        #info{
-            position: fixed;
-            top:1vh;
-            left:1vh;
-            height: 3vh;
-            opacity: 70%;
-        }
-        
-        #saying{
-            margin: 0 auto;
-            color: #7d8088;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body onload="start();" background="../static/background.jpg">
@@ -73,7 +18,7 @@
     <div class="container">
         <!-- <button type="button" class="btn btn-info shadow lift me-1" id="info" href="https://baidu.com">Info</button> -->
         <p id="saying">{{ data.s }}</p>
-        <a href="https://github.com/NoNormalCreeper/school-countdown"><svg xmlns="http://www.w3.org/2000/svg" id="info" class="bi bi-github" viewBox="0 0 16 16">
+        <a href="https://github.com/NoNormalCreeper/school-countdown" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" id="info" class="bi bi-github" viewBox="0 0 16 16">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
           </svg></a>
         <div class="acounter" onload="start();">
