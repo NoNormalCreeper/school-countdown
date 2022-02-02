@@ -42,7 +42,7 @@ function countdown(){
     var percent=(100-(diff_time0/(date_e-date_s)*100)).toFixed(5);
 
     // display
-    var output=("<p>距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em;\"><b>"+days+"</b>天<b>"+hours+"</b>小时<b>"+minutes+"</b>分钟<b>"+seconds+"</b>秒</p><p style=\"font-size:1.2em\">(即<b>"+((diff_time.toFixed(3)).toLocaleString())+"</b>秒)</p>")
+    var output=("<p style=\"font-size:1rem;color:#595d6e\">距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em;\"><b>"+days+"</b>天<b>"+hours+"</b>小时<b>"+minutes+"</b>分钟<b>"+seconds+"</b>秒</p><p style=\"font-size:1.2em\">(即<b>"+((diff_time.toFixed(3)).toLocaleString())+"</b>秒)</p>")
     var timerDiv=document.getElementById("timer");
     timerDiv.innerHTML=output;
     // var percentDiv=document.getElementById("percent");
@@ -71,6 +71,20 @@ function submitEdit(){
 function resetHolidayEnd(){
     holiday_end=default_holiday_end;
     sessionStorage.removeItem('holiday_end');
+}
+
+function disappear(){
+    var cardDiv=document.getElementById("edit_card");
+    if(cardDiv.style.opacity>0){
+        cardDiv.style.opacity=cardDiv.style.opacity-0.1;
+    }else{
+        cardDiv.style.display="none";
+        clearInterval();
+    }
+}
+
+function closeEditCard(){
+    window.setInterval("disappear();",100);
 }
 
 function start(){

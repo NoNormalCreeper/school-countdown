@@ -7,30 +7,38 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../static/style.css">
     <style>
-        .container{
-            height: 100vh;
+        .container1 {
+            height: 85vh;
             width: 100vw;
             text-align: center;
+            position: fixed;
+            top: 15vh;
+            margin: 0 auto;
         }
-        .acounter{
-            display:inline-block;
-            position:relative;
+
+        .acounter {
+            display: inline-block;
+            position: relative;
             margin: 10vh;
 
         }
-        .tmr{
+
+        .tmr {
             height: 15vh;
         }
-        .card{
+
+        .card {
             display: block;
-            position: relative; 
-            bottom: 5%;
+            position: relative;
+            margin-bottom: 5vh;
             padding: 10px;
             border-color: transparent;
             background-color: transparent;
             text-align: center;
+            opacity: 1.0;
         }
-        .bkg{
+
+        .bkg {
             position: absolute;
             width: auto;
             height: auto;
@@ -44,19 +52,20 @@
     <script type="text/javascript" src="../static/count.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
-    <div class="container">
+    <div class="container1">
 
         <!-- <div id="title">待定</div> -->
-        <div class= 'acounter'>
+        <div class='acounter'>
             <div class="tmr" id="timer">Loading...</div>
             <!-- <div id="percent">Loading...</div> -->
-            <div class="progress" style="height: 2em;width:650px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10"
-                    aria-valuemin="0" aria-valuemax="100" style="width: 0%;display: inline;" id="bar1"></div>
+            <div class="progress" style="height: 2em;width:650px;margin-top: 2em;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 0%;display: inline;"
+                    id="bar1"></div>
             </div>
         </div>
         <!-- <div id="editTime" class="shadow p-3 mb-5 bg-white rounded"> -->
-        <div class="card">
+        <div class="card" id="edit_card">
             <div class="bkg"></div>
             <div class="card-body" style="display:inline;">
                 <h5 class="card-title">开学时间不对？</h5>
@@ -69,6 +78,7 @@
                     <button type="button" onclick="resetHolidayEnd();" style="background-color: #eaeffd;"
                         class="btn btn-primary-soft lift" id="reset">恢复默认</button>
                 </p>
+                <button type="button" onclick="closeEditCard();" class="btn-close" aria-label="Close"></button>
             </div>
             <!-- </div> -->
         </div>
