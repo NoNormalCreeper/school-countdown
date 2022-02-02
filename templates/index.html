@@ -6,17 +6,49 @@
     <title>幸福倒计时</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="../static/style.css">
+    <style>
+        .container{
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+        }
+        .acounter{
+            display:inline-block;
+            position:relative;
+            margin: 10vh;
+
+        }
+        .tmr{
+            height: 15vh;
+        }
+        .card{
+            display: block;
+            position: relative; 
+            bottom: 5%;
+            padding: 10px;
+            border-color: transparent;
+            background-color: transparent;
+            text-align: center;
+        }
+        .bkg{
+            position: absolute;
+            width: auto;
+            height: auto;
+            opacity: 30%;
+        }
+    </style>
 </head>
 
-<body onload="start();" background="https://freemycloud.xyz/theme/metron/media/bg/bg-3.jpg"></body>
+<body onload="start();" background="https://freemycloud.xyz/theme/metron/media/bg/bg-3.jpg">
+    <script src="https://unpkg.com/spacingjs" defer></script><!-- 定位插件 按住alt选择元素以查看该元素与其他元素间的位置关系-->
     <script type="text/javascript" src="../static/count.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
     <div class="container">
 
         <!-- <div id="title">待定</div> -->
-        <div style="position: fixed;top:25%;text-align:center;">
-            <div id="timer" style="display: inline;">Loading...</div>
+        <div class= 'acounter'>
+            <div class="tmr" id="timer">Loading...</div>
             <!-- <div id="percent">Loading...</div> -->
             <div class="progress" style="height: 2em;width:650px;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10"
@@ -24,7 +56,8 @@
             </div>
         </div>
         <!-- <div id="editTime" class="shadow p-3 mb-5 bg-white rounded"> -->
-        <div class="card" style=" position:fixed; bottom: 5%;text-align: center;">
+        <div class="card">
+            <div class="bkg"></div>
             <div class="card-body" style="display:inline;">
                 <h5 class="card-title">开学时间不对？</h5>
                 <h6 class="card-subtitle mb-2 text-muted">在此处调整</h6>
@@ -33,7 +66,7 @@
                 <p>
                     <button type="button" onclick="submitEdit();" class="btn btn-primary shadow lift me-1"
                         id="submit">提交</button>
-                    <button type="button" onclick="resetHolidayEnd();" style="background-color: eaeffd;"
+                    <button type="button" onclick="resetHolidayEnd();" style="background-color: #eaeffd;"
                         class="btn btn-primary-soft lift" id="reset">恢复默认</button>
                 </p>
             </div>
