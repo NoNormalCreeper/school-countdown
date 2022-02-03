@@ -64,3 +64,11 @@
     color: #7d8088;
     text-align: center;
 }
+
+#copyright{
+    /* margin: 0 auto; */
+    color: #7d8088;
+    text-align: center;
+    position: fixed;
+    bottom: 2vh;
+}
