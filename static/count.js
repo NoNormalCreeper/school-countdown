@@ -42,16 +42,16 @@ function countdown(){
     var percent=(100-(diff_time0/(date_e-date_s)*100)).toFixed(5);
 
     // display
-    var output=("<p style=\"font-size:1rem;color:#595d6e\">距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em;\"><b>"+days+"</b>天<b>"+hours+"</b>小时<b>"+minutes+"</b>分钟<b>"+seconds+"</b>秒</p><p style=\"font-size:1.2em\">(即<b>"+((diff_time.toFixed(3)).toLocaleString())+"</b>秒)</p>")
+    var output=("<p style=\"font-size:1rem;color:#595d6e\">距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+"秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即"+((diff_time.toFixed(3)).toLocaleString())+"秒）</p>")
     var timerDiv=document.getElementById("timer");
     timerDiv.innerHTML=output;
     // var percentDiv=document.getElementById("percent");
-    // percentDiv.innerHTML=("<b>"+percent+"</b> %");
+    // percentDiv.innerHTML=(""+percent+" %");
 
     // generate progress bar
     var barDiv=document.getElementById("bar1");
     barDiv.setAttribute("style",("width: "+percent+"%"));
-    barDiv.innerHTML=("<b>"+percent+"%</b>");
+    barDiv.innerHTML=(""+percent+"%");
 
     // generate emotion
     var emotionDiv=document.getElementById("emotion");
@@ -84,7 +84,7 @@ function submitEdit(){
         sessionStorage.setItem('holiday_end',get_res);
     // }
     // TODO: 判断输入是否合法
-    document.getElementById("toast-body-1").innerHTML=("成功修改开学时间为<b>"+date_e+"</b>！")
+    document.getElementById("toast-body-1").innerHTML=("成功修改开学时间为"+date_e+"！")
 }
 
 function resetHolidayEnd(){
