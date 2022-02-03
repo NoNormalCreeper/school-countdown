@@ -49,10 +49,29 @@ function countdown(){
     // percentDiv.innerHTML=("<b>"+percent+"</b> %");
 
     // generate progress bar
-    var barDiv=document.getElementById("bar1")
+    var barDiv=document.getElementById("bar1");
     barDiv.setAttribute("style",("width: "+percent+"%"));
     barDiv.innerHTML=("<b>"+percent+"%</b>");
 
+    // generate emotion
+    var emotionDiv=document.getElementById("emotion");
+    var res="../static/emotion-";
+    var percent2=100-percent;   // 发现逻辑写反了之后的补救
+    if(percent2>80){
+        var tmp="5";
+    }else if(percent2>60){
+        var tmp="4";
+    }else if(percent2>45){
+        var tmp="3";
+    }else if(percent2>25){
+        var tmp="2";
+    }else if(percent2>15){
+        var tmp="1";
+    }else{
+        var tmp="0";
+    }
+    res=res+tmp+".png";
+    emotionDiv.setAttribute("src",res);
 }
 
 function submitEdit(){
@@ -87,16 +106,14 @@ function closeEditCard(){
     window.setInterval("disappear();",100);
 }
 
-function jumpToGithub(){
-    window.location="https://github.com/NoNormalCreeper/school-countdown";
-}
-
 function start(){
     window.setTimeout("",400);  // 展示加载环
     var width=document.body.offsetWidth;
     if(width>700){
         document.getElementById("bar1").setAttribute("style",("width: 700px"));
     }
+
+    document.getElementById("emotion").style.display="inline-block";
 
     window.setInterval("countdown();",7);   // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
 }
