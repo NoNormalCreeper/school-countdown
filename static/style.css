@@ -1,15 +1,16 @@
-@font-face{
-    font-family: "DINCond-Black"; 
+@font-face {
+    font-family: "DINCond-Black";
     src: url("../static/DINCond-Black.otf");
 }
 
-#editTime{
+#editTime {
     margin-top: 1em;
 }
 
-.button{
-    box-shadow:  0 .5rem 1rem rgba(black, .15);
+.button {
+    box-shadow: 0 .5rem 1rem rgba(black, .15);
 }
+
 
 /* .container {
     height: 85vh;
@@ -22,11 +23,9 @@
 
 .acounter {
     position: fixed;
-    top:15vh;
+    top: 15vh;
     display: inline-block;
-    position: relative;
     margin: 10vh;
-
 }
 
 .tmr {
@@ -34,41 +33,52 @@
 }
 
 .card {
-    display: block;
-    position: relative;
-    top:20vh;
+    display: inline-block;
+    /* position: relative;
+    top: 20vh;
     padding: 10px;
-    border-color: transparent;
-    background-color: transparent;
+    border-color: transparent; */
+    background-color: rgba(255, 255, 255, 0.3);
     text-align: center;
-    opacity: 1.0;
+    /* opacity: 1.0; */
 }
 
-.bkg {
-    position: absolute;
-    width: auto;
-    height: auto;
-    opacity: 30%;
+.info-text {
+    font-size: 1rem;
+    color: #595d6e;
 }
 
-#info{
+#edit_card {
+    width: 300px;
     position: fixed;
-    top:1vh;
-    left:1vh;
+    margin-top: 20px;
+    bottom: 10vh;
+    /* text-align: center; */
+}
+
+#info {
+    position: fixed;
+    top: 1vh;
+    left: 1vh;
     height: 3vh;
     opacity: 70%;
 }
 
-#saying{
+#saying {
     margin: 0 auto;
     color: #7d8088;
     text-align: center;
 }
 
-#copyright{
-    /* margin: 0 auto; */
-    color: #7d8088;
-    text-align: center;
+#copyright {
+    margin: 0 auto;
     position: fixed;
     bottom: 2vh;
+    color: #7d8088;
+}
+
+#covid {
+    display: none;
+    text-align: center;
+    position: fixed;
 }
