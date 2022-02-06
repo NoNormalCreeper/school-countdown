@@ -42,7 +42,7 @@ function countdown(){
     var percent=(100-(diff_time0/(date_e-date_s)*100)).toFixed(5);
 
     // display
-    var output=("<p style=\"font-size:1rem;color:#595d6e\">距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+"秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即"+((diff_time.toFixed(3)).toLocaleString())+"秒）</p>")
+    var output=("<p class=\"info-text\">距离开学(<i>"+holiday_end+"</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">"+days+"天"+hours+"小时"+minutes+"分钟"+seconds+"秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即"+((diff_time.toFixed(3)).toLocaleString())+"秒）</p>")
     var timerDiv=document.getElementById("timer");
     timerDiv.innerHTML=output;
     // var percentDiv=document.getElementById("percent");
@@ -107,13 +107,14 @@ function closeEditCard(){
 }
 
 function start(){
-    window.setTimeout("",400);  // 展示加载环
+    // window.setTimeout("",400);  // 展示加载环
     var width=document.body.offsetWidth;
     if(width>700){
         document.getElementById("bar1").setAttribute("style",("width: 700px"));
     }
 
     document.getElementById("emotion").style.display="inline-block";
+    document.getElementById("covid").style.display="inline-block";
 
     window.setInterval("countdown();",7);   // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
 }

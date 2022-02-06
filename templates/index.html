@@ -11,7 +11,8 @@
 </head>
 
 <body onload="start();" background="../static/background.jpg">
-    <script src="https://unpkg.com/spacingjs" defer></script><!--定位插件 按住alt选择元素以查看该元素与其他元素间的位置关系-->
+    <script src="https://unpkg.com/spacingjs" defer></script>
+    <!--定位插件 按住alt选择元素以查看该元素与其他元素间的位置关系-->
     <script type="text/javascript" src="../static/count.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
@@ -53,13 +54,18 @@
             </div>
             <!-- </div> -->
         </div>
-        <p id="copyright">Copyright © 2022-2022 MingyuanLi. All rights reserved.</p>
+        <div id="covid" class="card">
+            <div class="card-body">
+                <div>深圳现存确诊病例数</div>
+                <div style="font-size:1.6em; font-family: DINCond-Black;">{{ data.ccc }}</div>
+                <div id="ut" class="info-text" style="font-size:0.8rem;">更新时间: {{ data.ut }}</div>
+                <div class="info-text" style="font-size:0.8rem;">数据来源: <a
+                        href="https://ncov.dxy.cn/ncovh5/view/pneumonia">丁香园</a></div>
+            </div>
+        </div>
+        <footer id="copyright">Copyright © 2022-2022 MingyuanLi. All rights reserved.</f>
     </div>
     <script type="text/javascript" src="//js.users.51.la/21256655.js"></script>
-
-    <!-- <div class="container-md">
-        <h2>111111</h2>
-    </div> -->
 </body>
 
 </html>

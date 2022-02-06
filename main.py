@@ -14,8 +14,11 @@ def debug():
 @app.route("/", methods=["GET", "POST"])
 def index():
     s=getSaying.getSaying()
+    c=getSaying.getCurrentConfirmedCount()
     data={
-        "s":s
+        "s":s,
+        "ccc":c['current_confirmed'],
+        "ut": c['update_time']
     }
     return render_template("index.html",data=data)
 
