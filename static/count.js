@@ -42,7 +42,14 @@ function countdown() {
     var percent = (100 - (diff_time0 / (date_e - date_s) * 100)).toFixed(5);
 
     // display
-    var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
+    var isAdded = ""; // 暂时通过是否更改开学时间判断是否为深圳
+    if (holiday_end == default_holiday_end) {
+        var isAdded = "<b style=\"color: #0d6efd; \"> (+8d!)</b>";
+    } else {
+        announceDiv = document.getElementById("announce");
+        announceDiv.style.display = "none";
+    }
+    var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
     var timerDiv = document.getElementById("timer");
     timerDiv.innerHTML = output;
     // var percentDiv=document.getElementById("percent");
@@ -92,7 +99,7 @@ function resetHolidayEnd() {
     sessionStorage.removeItem('holiday_end');
 }
 
-function disappear() {
+function disappear() { // 渐隐效果，有bug
     var cardDiv = document.getElementById("edit_card");
     if (cardDiv.style.opacity > 0) {
         cardDiv.style.opacity = cardDiv.style.opacity - 0.1;

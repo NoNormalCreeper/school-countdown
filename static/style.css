@@ -70,6 +70,12 @@
     text-align: center;
 }
 
+#announce {
+    margin: 0 auto;
+    text-align: center;
+    font-size: small;
+}
+
 #copyright {
     margin: 0 auto;
     position: fixed;
