@@ -4,14 +4,6 @@ default_holiday_end = "2022/4/18 7:30:00"; // 默认开学时间
 next_holiday = "2022/7/10 00:30:00"; // 下一次放假时间估算值
 
 
-// function format(num) { // 转换为2位数
-//     if (num >= 10) {
-//         return num;
-//     } else {
-//         return ("0" + (num.toLocaleString()));
-//     }
-// }
-
 const format = (num) =>
     num >= 10 ? num : ("0" + num.toString()); // 转换为2位数
 
@@ -49,29 +41,19 @@ function countdown() {
     if (holiday_end == default_holiday_end) {
         var isAdded = "<b style=\"color: #0d6efd; \"> (+8d!)</b>";
     } else {
-        // announceDiv = document.getElementById("announce");
         var announceDiv = $("#announce");
-        // announceDiv.style.display = "none";
         announceDiv.attr("style", "display:none");
     }
     var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
-        // var timerDiv = document.getElementById("timer");
     var timerDiv = $("#timer");
-    // timerDiv.innerHTML = output;
     timerDiv.html(output);
-    // var percentDiv=document.getElementById("percent");
-    // percentDiv.innerHTML=(""+percent+" %");
 
     // generate progress bar
-    // var barDiv = document.getElementById("bar1");
     const barDiv = $("#bar1");
-    // barDiv.setAttribute("style", ("width: " + percent + "%"));
-    // barDiv.innerHTML = ("" + percent + "%");
     barDiv.attr("style", ("width: " + percent + "%"));
     barDiv.html(("" + percent + "%"));
 
     // generate emotion
-    // var emotionDiv = document.getElementById("emotion");
     const emotionDiv = $("#emotion");
     var res = "../static/emotion-";
     var percent2 = 100 - percent; // 发现逻辑写反了之后的补救
@@ -89,12 +71,10 @@ function countdown() {
         var tmp = "0";
     }
     res = res + tmp + ".png";
-    // emotionDiv.setAttribute("src", res);
     emotionDiv.attr("src", res);
 }
 
 function submitEdit() {
-    // var get_res = document.getElementById("edit").value;
     const get_res = $("#edit").val();
     holiday_end = get_res;
     // if(Object.is(seconds,NaN)){    // 我不会判断输入是否合法，所以只能这样曲线救国了qwq
@@ -104,7 +84,6 @@ function submitEdit() {
     sessionStorage.setItem('holiday_end', get_res);
     // }
     // TODO: 判断输入是否合法
-    // document.getElementById("toast-body-1").innerHTML = ("成功修改开学时间为" + date_e + "！")
     $(".toast-body-1").html("成功修改开学时间为" + get_res + "！");
 }
 
@@ -113,41 +92,17 @@ function resetHolidayEnd() {
     sessionStorage.removeItem('holiday_end');
 }
 
-// function disappear() { // 渐隐效果，有bug
-//     // var cardDiv = document.getElementById("edit_card");
-//     const cardDiv = $("#edit_card");
-//     // // if (cardDiv.style.opacity > 0) {
-//     // //     cardDiv.style.opacity = cardDiv.style.opacity - 0.1;
-//     // // } else {
-//     // //     cardDiv.style.display = "none";
-//     // //     clearInterval();
-//     // // }
-//     // if (cardDiv.css("opacity") > 0) {
-//     //     cardDiv.css("opacity", cardDiv.css("opacity") - 0.01);
-//     // } else {
-//     //     cardDiv.css("display", "none");
-//     //     clearInterval();
-//     // }
-//     cardDiv.fadeOut(1000);
-// }
-
 function closeEditCard() {
-    // window.setInterval("disappear();", 10);
     const cardDiv = $("#edit_card");
-    // cardDiv.fadeOut(1000);
     cardDiv.hide("quick");
 }
 
 function start() {
-    // window.setTimeout("",400);  // 展示加载环
     var width = document.body.offsetWidth;
     if (width > 700) {
-        // document.getElementById("bar1").setAttribute("style", ("width: 700px"));
         $("#bar1").attr("style", ("width: 700px"));
     }
 
-    // document.getElementById("emotion").style.display = "inline-block";
-    // document.getElementById("covid").style.display = "inline-block";
     $("#emotion").attr("style", "display:inline-block");
     $("#covid").attr("style", "display:inline-block");
 
