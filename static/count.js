@@ -97,7 +97,13 @@ function closeEditCard() {
     cardDiv.hide("quick");
 }
 
-function start() {
+async function fetchAsync(url) {
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
+}
+
+$(() => { // init
     var width = document.body.offsetWidth;
     if (width > 700) {
         $("#bar1").attr("style", ("width: 700px"));
@@ -106,5 +112,92 @@ function start() {
     $("#emotion").attr("style", "display:inline-block");
     $("#covid").attr("style", "display:inline-block");
 
+    const covidNum = $("#ccc");
+    const updateTime = $("#ut");
+    const url = "covid_api";
+    // const url = "https://lab.isaaclin.cn/nCoV/api/area?province=广东省"; 
+    // fetchAsync(url).then(data => {
+    //     covidNum.html(data.ccc);
+    //     updateTime.html(data.ut);
+    // });
+    // $.ajax({
+    //     type: "GET",
+    //     url: "https://lab.isaaclin.cn/nCoV/api/area?province=广东省",
+    //     async: true,
+    //     dataType: 'jsonp', //you may use jsonp for cross origin request
+    //     crossDomain: true,
+    //     success: function(data, status, xhr) {
+    //         const obj = JSON.parse(data);
+    //         // const time_zone = +8;
+    //         current_confirmed = obj.results[0].cities[1].currentConfirmedCount;
+    //         const city_data = obj[0].cities;
+    //         for (i of city_data) {
+    //             if (i.cityName == "深圳市") {
+    //                 const current_confirmed = i.currentConfirmedCount;
+    //                 break;
+    //             }
+    //         }
+    //         const uT = obj[0].updateTime;
+    //         update_time = new Date.parse(uT);
+    //         covidNum.html(current_confirmed);
+    //         updateTime.html(uT.toLocaleString());
+    //     }
+    // });
+
+    // $.getJSON(url, (data) => {
+    //     // current_confirmed = data.results[0].cities[1].currentConfirmedCount;
+    //     // const city_data = data[0].cities;
+    //     // for (i of city_data) {
+    //     //     if (i.cityName == "深圳市") {
+    //     //         const current_confirmed = i.currentConfirmedCount;
+    //     //         break;
+    //     //     }
+    //     // }
+    //     // const uT = obj[0].updateTime;
+    //     // update_time = new Date.parse(uT);
+    //     // covidNum.html(current_confirmed);
+    //     // updateTime.html(uT.toLocaleString());
+    //     covidNum.html(data.ccc);
+    //     updateTime.html(data.ut);
+    // });
+
+    function writeCovidData(data, status) {
+        current_confirmed = data.results[0].cities[1].currentConfirmedCount;
+        const city_data = data[0].cities;
+        for (i of city_data) {
+            if (i.cityName == "深圳市") {
+                const current_confirmed = i.currentConfirmedCount;
+                break;
+            }
+        }
+        const uT = obj[0].updateTime;
+        update_time = new Date.parse(uT);
+        covidNum.html(current_confirmed);
+        updateTime.html(uT.toLocaleString());
+        // covidNum.html(data.ccc);
+        // updateTime.html(data.ut);
+    }
+
+    $.ajax(url, {
+        dataType: 'json',
+        jsonp: 'callback',
+        jsonpCallBack: 'writeCovidData'
+    });
+
     window.setInterval("countdown();", 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
-}
+})
+
+
+
+$(() => {
+    // $.ajax({
+    //     url: url,
+    //     type: "GET",
+    //     dataType: "json",
+    //     success: (data) => {
+    //         covidNum.text(data.ccc);
+    //         updateTime.text(data.ut);
+    //     }
+    // })
+
+})

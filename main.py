@@ -17,10 +17,19 @@ def index():
     c=getSaying.getCurrentConfirmedCount()
     data={
         "s":s,
+    }
+    return render_template("index.html",data=data)
+
+
+@app.route("/covid_api", methods=["GET"])
+def covid_api():
+    c=getSaying.getCurrentConfirmedCount()
+    data={
         "ccc":c['current_confirmed'],
         "ut": c['update_time']
     }
-    return render_template("index.html",data=data)
+    return data
+    
 
 @app.errorhandler(404)  # 404页面
 def not_found(e):
