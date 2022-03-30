@@ -7,6 +7,36 @@ next_holiday = "2022/7/10 00:30:00"; // 下一次放假时间估算值
 const format = (num) =>
     num >= 10 ? num : ("0" + num.toString()); // 转换为2位数
 
+// vue init
+var timer = new Vue({
+    el: '#timer',
+    data: {
+        rawHtml: '<div class="spinner-border text-muted"><span class="visually-hidden"></span></div>'
+    }
+})
+
+var announce = new Vue({
+    el: '#announce',
+    data: {
+        seen: true
+    }
+})
+
+var confirmedCount = new Vue({
+    el: '#ccc',
+    data: {
+        ccc: "Loading..."
+    }
+})
+
+var updateTime = new Vue({
+    el: '#ut',
+    data: {
+        ut: "Loading..."
+    }
+})
+
+
 function countdown() {
     // init
     if (sessionStorage.getItem('holiday_end')) {
@@ -37,16 +67,15 @@ function countdown() {
     var percent = (100 - (diff_time0 / (date_e - date_s) * 100)).toFixed(5);
 
     // display
-    var isAdded = ""; // 暂时通过是否更改开学时间判断是否为深圳
     if (holiday_end == default_holiday_end) {
         var isAdded = "<b style=\"color: #0d6efd; \"> (+8d!)</b>";
+        announce.seen = true;
     } else {
-        var announceDiv = $("#announce");
-        announceDiv.attr("style", "display:none");
+        var isAdded = ""; // 暂时通过是否更改开学时间判断是否为深圳
+        announce.seen = false;
     }
     var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
-    var timerDiv = $("#timer");
-    timerDiv.html(output);
+    timer.rawHtml = output;
 
     // generate progress bar
     const barDiv = $("#bar1");
@@ -112,92 +141,18 @@ $(() => { // init
     $("#emotion").attr("style", "display:inline-block");
     $("#covid").attr("style", "display:inline-block");
 
-    const covidNum = $("#ccc");
-    const updateTime = $("#ut");
     const url = "covid_api";
-    // const url = "https://lab.isaaclin.cn/nCoV/api/area?province=广东省"; 
-    // fetchAsync(url).then(data => {
-    //     covidNum.html(data.ccc);
-    //     updateTime.html(data.ut);
-    // });
-    // $.ajax({
-    //     type: "GET",
-    //     url: "https://lab.isaaclin.cn/nCoV/api/area?province=广东省",
-    //     async: true,
-    //     dataType: 'jsonp', //you may use jsonp for cross origin request
-    //     crossDomain: true,
-    //     success: function(data, status, xhr) {
-    //         const obj = JSON.parse(data);
-    //         // const time_zone = +8;
-    //         current_confirmed = obj.results[0].cities[1].currentConfirmedCount;
-    //         const city_data = obj[0].cities;
-    //         for (i of city_data) {
-    //             if (i.cityName == "深圳市") {
-    //                 const current_confirmed = i.currentConfirmedCount;
-    //                 break;
-    //             }
-    //         }
-    //         const uT = obj[0].updateTime;
-    //         update_time = new Date.parse(uT);
-    //         covidNum.html(current_confirmed);
-    //         updateTime.html(uT.toLocaleString());
-    //     }
-    // });
-
-    // $.getJSON(url, (data) => {
-    //     // current_confirmed = data.results[0].cities[1].currentConfirmedCount;
-    //     // const city_data = data[0].cities;
-    //     // for (i of city_data) {
-    //     //     if (i.cityName == "深圳市") {
-    //     //         const current_confirmed = i.currentConfirmedCount;
-    //     //         break;
-    //     //     }
-    //     // }
-    //     // const uT = obj[0].updateTime;
-    //     // update_time = new Date.parse(uT);
-    //     // covidNum.html(current_confirmed);
-    //     // updateTime.html(uT.toLocaleString());
-    //     covidNum.html(data.ccc);
-    //     updateTime.html(data.ut);
-    // });
 
     function writeCovidData(data, status) {
-        current_confirmed = data.results[0].cities[1].currentConfirmedCount;
-        const city_data = data[0].cities;
-        for (i of city_data) {
-            if (i.cityName == "深圳市") {
-                const current_confirmed = i.currentConfirmedCount;
-                break;
-            }
-        }
-        const uT = obj[0].updateTime;
-        update_time = new Date.parse(uT);
-        covidNum.html(current_confirmed);
-        updateTime.html(uT.toLocaleString());
-        // covidNum.html(data.ccc);
-        // updateTime.html(data.ut);
+        confirmedCount.ccc = data.ccc;
+        updateTime.ut = data.ut;
     }
 
     $.ajax(url, {
         dataType: 'json',
-        jsonp: 'callback',
-        jsonpCallBack: 'writeCovidData'
+        success: writeCovidData
     });
 
+
     window.setInterval("countdown();", 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
-})
-
-
-
-$(() => {
-    // $.ajax({
-    //     url: url,
-    //     type: "GET",
-    //     dataType: "json",
-    //     success: (data) => {
-    //         covidNum.text(data.ccc);
-    //         updateTime.text(data.ut);
-    //     }
-    // })
-
 })
