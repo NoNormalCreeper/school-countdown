@@ -12,21 +12,22 @@ const format = (num) =>
 var timer = new Vue({
     el: '#timer',
     data: {
-        rawHtml: '<div class="spinner-border text-muted"><span class="visually-hidden"></span></div>'
+        rawHtml: '<div class="spinner-border text-muted"></div>'
     }
 })
 
 var announce = new Vue({
     el: '#announce',
     data: {
-        seen: true
+        seen: true,
+        text: ""
     }
 })
 
 var confirmedCount = new Vue({
     el: '#ccc',
     data: {
-        ccc: "Loading..."
+        ccc: '<div class="spinner-grow text-secondary" role="status"></div>'
     }
 })
 
