@@ -145,7 +145,7 @@ $(() => { // init
 
     function writeCovidData(data, status) {
         confirmedCount.ccc = data.ccc;
-        updateTime.ut = data.ut;
+        updateTime.ut = "更新时间: "+data.ut;
     }
 
     $.ajax(url, {
