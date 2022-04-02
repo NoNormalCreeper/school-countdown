@@ -1,7 +1,8 @@
 // config
-holiday_start = "2022/1/14 17:00:00"; // 放假时间
-default_holiday_end = "2022/4/18 7:30:00"; // 默认开学时间
-next_holiday = "2022/7/10 00:30:00"; // 下一次放假时间估算值
+var 
+    holiday_start = "2022/1/14 17:00:00"; // 放假时间
+    default_holiday_end = "2022/4/18 7:30:00"; // 默认开学时间
+    next_holiday = "2022/7/10 00:30:00"; // 下一次放假时间估算值
 
 
 const format = (num) =>
@@ -46,8 +47,6 @@ function countdown() {
     }
     var date_n = new Date();
     var date_s = new Date(holiday_start);
-    // var date_e_tmp=new Date(holiday_end);
-    // var date_e=date_e_tmp.getFullYear()+'-'+(date_e_tmp.getMonth()+1)+'-'+date_e_tmp.getDate()+' '+date_e_tmp.getHours()+':'+date_e_tmp.getMinutes()+':'+date_e_tmp.getSeconds();
     var date_e = new Date(holiday_end);
     // var yyyy=date_n.getFullYear();
     // var MM=date_n.getMonth();
@@ -103,28 +102,32 @@ function countdown() {
     emotionDiv.attr("src", res);
 }
 
-function submitEdit() {
-    const get_res = $("#edit").val();
-    holiday_end = get_res;
+
+var submitButton = $("#submit-button");
+submitButton.click(() => {
+    var get_res = $("#edit").val();
     // if(Object.is(seconds,NaN)){    // 我不会判断输入是否合法，所以只能这样曲线救国了qwq
     //     holiday_end=default_holiday_end;
     //     alert("请输入完整正确的时间日期 (╯>д<)╯");
     // }else{
     sessionStorage.setItem('holiday_end', get_res);
+    holiday_end = get_res;
     // }
     // TODO: 判断输入是否合法
-    $(".toast-body-1").html("成功修改开学时间为" + get_res + "！");
-}
+    // $(".toast-body-1").html("成功修改开学时间为" + get_res + "！");
+})
 
-function resetHolidayEnd() {
+var resetButton = $("#reset-button");
+resetButton.click(() => {
     holiday_end = default_holiday_end;
     sessionStorage.removeItem('holiday_end');
-}
+})
 
-function closeEditCard() {
+var closeBotton = $("#close-botton");
+closeBotton.click(() => {
     const cardDiv = $("#edit_card");
     cardDiv.hide("quick");
-}
+})
 
 async function fetchAsync(url) {
     let response = await fetch(url);
@@ -140,19 +143,18 @@ $(() => { // init
 
     $("#emotion").attr("style", "display:inline-block");
     $("#covid").attr("style", "display:inline-block");
+    resetButton.attr("value", default_holiday_end);
 
     const url = "covid_api";
 
-    function writeCovidData(data, status) {
-        confirmedCount.ccc = data.ccc;
-        updateTime.ut = "更新时间: "+data.ut;
-    }
-
     $.ajax(url, {
         dataType: 'json',
-        success: writeCovidData
+        success: (data, status) => {
+            confirmedCount.ccc = data.ccc;
+            updateTime.ut = "更新时间: "+ data.ut;
+        }
     });
 
 
-    window.setInterval("countdown();", 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
+    window.setInterval(countdown, 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
 })

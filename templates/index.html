@@ -45,12 +45,12 @@
             <div class="card-body" style="display:inline;">
                 <h5 class="card-title">开学时间不对？</h5>
                 <h6 class="card-subtitle mb-2 text-muted">在此处调整</h6>
-                <input type="datetime-local" value="2022-2-13 16:30:00" id="edit" style="margin-bottom:0.5em; background-color:#f7f8fa; border: 0px;" />
+                <input type="datetime-local" id="edit" style="margin-bottom:0.5em; background-color:#f7f8fa; border: 0px;" />
                 <p>
-                    <button type="button" onclick="submitEdit();" class="btn btn-primary shadow lift me-1" id="submit">提交</button>
-                    <button type="button" onclick="resetHolidayEnd();" style="background-color: #eaeffd;" class="btn btn-primary-soft lift" id="reset">恢复默认</button>
+                    <button type="button" id="submit-button" class="btn btn-primary shadow lift me-1" id="submit">提交</button>
+                    <button type="button" id="reset-button" style="background-color: #eaeffd;" class="btn btn-primary-soft lift" id="reset">恢复默认</button>
                 </p>
-                <button type="button" onclick="closeEditCard();" class="btn-close" aria-label="Close"></button>
+                <button type="button" id="close-botton" class="btn-close" aria-label="Close"></button>
             </div>
             <!-- </div> -->
         </div>
