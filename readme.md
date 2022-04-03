@@ -4,14 +4,21 @@
 现在(2022.2)，QQ机器人又受到了疼讯的种种限制，所以我只好想到了网页版的这个方法。
 
 ## Build
-*Currently only Windows is supported.*
+
 ### 1. Build Python environment
 - [Download the package](https://www.python.org/downloads/windows/) and install Python *version>=3.8*.
 
 - Run `autoinstall.py` to install modules required.
 
 ### 2. Run the server
-- Run `run.bat` to run the server.
+#### Method 1
+```shell
+python3 main.py
+```
+
+#### Method 2 (Especially for Windows)
+Run `run.bat` to run the server.
+
 
 > Quite easy, isn't it?
 
@@ -24,4 +31,4 @@ Contributions are welcome, including but not limited to **improvements**, **new 
     - Sometimes there are problems with the page layout.
 - More animes
     - Floating animation of each element when entering the page.
-    - Fade animation when closing the card of "adjust school start time".
+    - ☑️ Fade animation when closing the card of "adjust school start time".
