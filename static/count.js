@@ -1,8 +1,8 @@
 // config
 var 
-    holiday_start = "2022/1/14 17:00:00"; // 放假时间
-    default_holiday_end = "2022/4/18 7:30:00"; // 默认开学时间
-    next_holiday = "2022/7/10 00:30:00"; // 下一次放假时间估算值
+    holiday_start = "2022/7/16 17:00:00"; // 放假时间
+    default_holiday_end = "2022/8/31 7:30:00"; // 默认开学时间
+    next_holiday = "2023/1/21 00:30:00"; // 下一次放假时间估算值
 
 
 const format = (num) =>
@@ -68,8 +68,8 @@ function countdown() {
 
     // display
     if (holiday_end == default_holiday_end) {
-        var isAdded = "<b style=\"color: #0d6efd; \"> (+8d!)</b>";
-        announce.seen = true;
+        var isAdded = "";
+        announce.seen = false;
     } else {
         var isAdded = ""; // 暂时通过是否更改开学时间判断是否为深圳
         announce.seen = false;
