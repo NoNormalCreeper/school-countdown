@@ -14,10 +14,10 @@ def debug():
 @app.route("/", methods=["GET", "POST"])
 def index():
     s=getSaying.getSaying()
-    # data={
-    #     "s":s,
-    # }
-    return render_template("index.html")
+    data={
+        "s":s,
+    }
+    return render_template("index.html", data=data)
 
 
 @app.route("/covid_api", methods=["GET"])
@@ -36,4 +36,4 @@ def not_found(e):
     return render_template('404.html'), 404 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5901,debug=True)
+    app.run(host="0.0.0.0",port=5901,debug=False)
