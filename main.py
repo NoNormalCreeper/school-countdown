@@ -13,10 +13,6 @@ def debug():
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    s=getSaying.getSaying()
-    data={
-        "s":s,
-    }
     return render_template("index.html", data=data)
 
 
@@ -28,7 +24,10 @@ def covid_api():
         "ut": c['update_time']
     }
     return data
-    
+
+@app.route("/saying", methods=["GET"])
+def _() -> str:
+    return getSaying.getSaying()
 
 @app.errorhandler(404)  # 404页面
 def not_found(e):

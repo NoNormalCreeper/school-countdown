@@ -1,7 +1,7 @@
 // config
 var 
     holiday_start = "2022/7/16 17:00:00";       // 放假时间
-    default_holiday_end = "2022/8/31 7:30:00";  // 默认开学时间
+    default_holiday_end = "2022/8/31 14:00:00";  // 默认开学时间
     next_holiday = "2023/1/21 00:30:00";        // 下一次放假时间估算值
 
 
@@ -50,7 +50,8 @@ function countdown() {
         "leftMin": minutes,
         "leftSec": seconds,
         "leftMs": milliseconds,
-        "totalSec": ((diff_time.toFixed(3)).toLocaleString())
+        "totalSec": ((diff_time.toFixed(3)).toLocaleString()),
+        "holidayEndTime": `(${holiday_end})`
     });
     // var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
     // timer.rawHtml = output;
@@ -129,6 +130,12 @@ $(() => { // init
     //         updateTime.ut = "更新时间: "+ data.ut;
     //     }
     // });
+    $.ajax("saying", {
+        dataType: 'text',
+        success: (data, status) => {
+            $("#saying").text(data);
+        }
+    })
 
     window.setInterval(countdown, 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
 })
