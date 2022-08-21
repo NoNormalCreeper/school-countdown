@@ -1,8 +1,8 @@
 // config
 var 
-    holiday_start = "2022/7/16 17:00:00";       // 放假时间
-    default_holiday_end = "2022/8/31 14:00:00";  // 默认开学时间
-    next_holiday = "2023/1/21 00:30:00";        // 下一次放假时间估算值
+    holidayStart = "2022/7/16 17:00:00";       // 放假时间
+    defaultHolidayEnd = "2022/8/31 14:00:00";  // 默认开学时间
+    nextHoliday = "2023/1/21 00:30:00";        // 下一次放假时间估算值
 
 
 const format = (num) =>
@@ -17,24 +17,24 @@ const setTexts = (object) => {
 
 function countdown() {
     // init
-    if (sessionStorage.getItem('holiday_end')) {
-        holiday_end = sessionStorage.getItem('holiday_end');
+    if (sessionStorage.getItem('holidayEnd')) {
+        var holidayEnd = sessionStorage.getItem('holidayEnd');
     } else {
-        holiday_end = default_holiday_end;
+        var holidayEnd = defaultHolidayEnd;
     }
-    var date_n = new Date();
-    var date_s = new Date(holiday_start);
-    var date_e = new Date(holiday_end);
+    var timeNow = new Date();
+    var timeStart = new Date(holidayStart);
+    var timeEnd = new Date(holidayEnd);
 
     // calc
-    var diff_time0 = (date_e - date_n); // 时间差(ms)
-    var diff_time = diff_time0 / 1000; // 时间差(s)
-    var days = parseInt(diff_time / 86400); // 天  24*60*60*1000 
-    var hours = format(parseInt(diff_time / 3600) - 24 * days); // 小时 60*60 总小时数-过去的小时数=现在的小时数 
-    var minutes = format(parseInt(diff_time % 3600 / 60)); // 分钟 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
-    var seconds = format(parseInt(diff_time % 60)); // 以60秒为一整份 取余 剩下秒数
-    var milliseconds = format(parseInt(diff_time0 % 1000));
-    var percent = (100 - (diff_time0 / (date_e - date_s) * 100)).toFixed(5);
+    var diffTime0 = (timeEnd - timeNow); // 时间差(ms)
+    var diffTime = diffTime0 / 1000; // 时间差(s)
+    var leftDays = parseInt(diffTime / 86400); // 天  24*60*60*1000 
+    var leftHours = format(parseInt(diffTime / 3600) - 24 * leftDays); // 小时 60*60 总小时数-过去的小时数=现在的小时数 
+    var leftMinutes = format(parseInt(diffTime % 3600 / 60)); // 分钟 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
+    var leftSeconds = format(parseInt(diffTime % 60)); // 以60秒为一整份 取余 剩下秒数
+    var leftMilliseconds = format(parseInt(diffTime0 % 1000));
+    var percent = (100 - (diffTime0 / (timeEnd - timeStart) * 100)).toFixed(5);
 
     // display
     // if (holiday_end == default_holiday_end) {
@@ -45,13 +45,13 @@ function countdown() {
     //     announce.seen = false;
     // }
     setTexts({
-        "leftDay": days,
-        "leftHr": hours,
-        "leftMin": minutes,
-        "leftSec": seconds,
-        "leftMs": milliseconds,
-        "totalSec": ((diff_time.toFixed(3)).toLocaleString()),
-        "holidayEndTime": `(${holiday_end})`
+        "leftDay": leftDays,
+        "leftHr": leftHours,
+        "leftMin": leftMinutes,
+        "leftSec": leftSeconds,
+        "leftMs": leftMilliseconds,
+        "totalSec": ((diffTime.toFixed(3)).toLocaleString()),
+        "holidayEndTime": `(${holidayEnd})`
     });
     // var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
     // timer.rawHtml = output;
@@ -86,13 +86,13 @@ function countdown() {
 
 var submitButton = $("#submit-button");
 submitButton.click(() => {
-    var get_res = $("#edit").val();
+    var editedEndDate = $("#edit").val();
     // if(Object.is(seconds,NaN)){    // 我不会判断输入是否合法，所以只能这样曲线救国了qwq
     //     holiday_end=default_holiday_end;
     //     alert("请输入完整正确的时间日期 (╯>д<)╯");
     // }else{
-    sessionStorage.setItem('holiday_end', get_res);
-    holiday_end = get_res;
+    sessionStorage.setItem('holidayEnd', editedEndDate);
+    holidayEnd = editedEndDate;
     // }
     // TODO: 判断输入是否合法
     // $(".toast-body-1").html("成功修改开学时间为" + get_res + "！");
@@ -100,8 +100,8 @@ submitButton.click(() => {
 
 var resetButton = $("#reset-button");
 resetButton.click(() => {
-    holiday_end = default_holiday_end;
-    sessionStorage.removeItem('holiday_end');
+    holidayEnd = defaultHolidayEnd;
+    sessionStorage.removeItem('holidayEnd');
 })
 
 var closeBotton = $("#close_botton");
@@ -119,7 +119,7 @@ async function fetchAsync(url) {
 $(() => { // init
     // $("#emotion").attr("style", "display:inline-block");
     // $("#covid").attr("style", "display:inline-block");
-    resetButton.attr("value", default_holiday_end);
+    resetButton.attr("value", defaultHolidayEnd);
 
     // const url = "covisd_api";
 
