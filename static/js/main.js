@@ -103,7 +103,7 @@ resetButton.click(() => {
     sessionStorage.removeItem('holiday_end');
 })
 
-var closeBotton = $("#close-botton");
+var closeBotton = $("#close_botton");
 closeBotton.click(() => {
     const cardDiv = $("#edit_card");
     cardDiv.hide("quick");
