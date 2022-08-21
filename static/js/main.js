@@ -4,7 +4,6 @@ var
     defaultHolidayEnd = "2022/8/31 14:00:00";  // 默认开学时间
     nextHoliday = "2023/1/21 00:30:00";        // 下一次放假时间估算值
 
-
 const format = (num) =>
     num >= 10 ? num : ("0" + num.toString()); // 转换为2位数
 
@@ -12,6 +11,22 @@ const setTexts = (object) => {
     Object.entries(object).forEach(([k, v]) => {
         $(`#${k}`).text(v);
     });
+}
+
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "H+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S": this.getMilliseconds()
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
 }
 
 
@@ -22,9 +37,10 @@ function countdown() {
     } else {
         var holidayEnd = defaultHolidayEnd;
     }
+
     var timeNow = new Date();
-    var timeStart = new Date(holidayStart);
-    var timeEnd = new Date(holidayEnd);
+        timeStart = new Date(holidayStart);
+        timeEnd = new Date(holidayEnd);
 
     // calc
     var diffTime0 = (timeEnd - timeNow); // 时间差(ms)
@@ -51,7 +67,7 @@ function countdown() {
         "leftSec": leftSeconds,
         "leftMs": leftMilliseconds,
         "totalSec": ((diffTime.toFixed(3)).toLocaleString()),
-        "holidayEndTime": `(${holidayEnd})`
+        "holidayEndTime": `(${timeEnd.Format("yyyy/MM/dd HH:mm:ss")})`
     });
     // var output = ("<p class=\"info-text\">距离开学(<i>" + holiday_end + isAdded + "</i>)还有</p><p style=\"font-size:1.6em; font-family: DINCond-Black;\">" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒</p><p style=\"font-size:1.2em; font-family: DINCond-Black;\">（即" + ((diff_time.toFixed(3)).toLocaleString()) + "秒）</p>")
     // timer.rawHtml = output;
@@ -86,13 +102,15 @@ function countdown() {
 
 var submitButton = $("#submit-button");
 submitButton.click(() => {
-    var editedEndDate = $("#edit").val();
-    // if(Object.is(seconds,NaN)){    // 我不会判断输入是否合法，所以只能这样曲线救国了qwq
-    //     holiday_end=default_holiday_end;
-    //     alert("请输入完整正确的时间日期 (╯>д<)╯");
-    // }else{
-    sessionStorage.setItem('holidayEnd', editedEndDate);
-    holidayEnd = editedEndDate;
+    var editedEndDate = $("#date_input").val();
+    if (editedEndDate === "" || editedEndDate === null) {
+        alert("日期格式错误，请检查后重试。");
+        return;
+    }
+    editedEndDateObj = new Date(editedEndDate);
+    editedEndDateObj.setHours(14);
+    sessionStorage.setItem('holidayEnd', editedEndDateObj);
+    holidayEnd = editedEndDateObj;
     // }
     // TODO: 判断输入是否合法
     // $(".toast-body-1").html("成功修改开学时间为" + get_res + "！");
@@ -104,11 +122,10 @@ resetButton.click(() => {
     sessionStorage.removeItem('holidayEnd');
 })
 
-var closeBotton = $("#close_botton");
+var closeBotton = $("#edit_card .btn-close");
 closeBotton.click(() => {
-    const cardDiv = $("#edit_card");
-    cardDiv.hide("quick");
-})
+    $("#edit_card").hide("quick");
+});
 
 async function fetchAsync(url) {
     let response = await fetch(url);
