@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import os, time
+from sys import argv
+from getopt import getopt
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
 import getSaying
+
 
 app = Flask(__name__)
 
@@ -13,8 +16,7 @@ def debug():
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("index.html", data=data)
-
+    return render_template("index.html")
 
 @app.route("/covid_api", methods=["GET"])
 def covid_api():
@@ -34,5 +36,21 @@ def not_found(e):
     print('404')
     return render_template('404.html'), 404 
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",port=5901,debug=False)
+    '''
+    Usage:
+        python main.py [-h <host>] [-p <port>] [-d <debug>]
+    '''
+    host = "0.0.0.0"
+    port = 8080
+    debug_on = False
+    opts, args = getopt(argv[1:], "h:p:d")
+    for k, v in opts:
+        if k == "-h":
+            host = v
+        elif k == "-p":
+            port = int(v)
+        elif k == "-d":
+            debug_on = True
+    app.run(host=host, port=port, debug=debug_on)
