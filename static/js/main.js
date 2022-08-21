@@ -80,7 +80,7 @@ function countdown() {
 
 var submitButton = $("#submit-button");
 submitButton.click(() => {
-    var editedEndDate = $("#date_input").val();
+    var editedEndDate = $("#dateInput").val();
     if (editedEndDate === "" || editedEndDate === null) {
         alert("日期格式错误，请检查后重试。");
         return;
@@ -101,6 +101,10 @@ var closeBotton = $("#edit_card .btn-close");
 closeBotton.click(() => {
     $("#edit_card").hide("quick");
 });
+
+// function setEnglish() {
+//     alert(1);
+// }
 
 async function fetchAsync(url) {
     let response = await fetch(url);
