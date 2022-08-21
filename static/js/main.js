@@ -82,6 +82,10 @@ var submitButton = $("#submit-button");
 submitButton.click(() => {
     var editedEndDate = $("#dateInput").val();
     if (editedEndDate === "" || editedEndDate === null) {
+        if ($("html").attr("lang") === "en") {
+            alert("Invaid date, please check and try again");
+            return;
+        }
         alert("日期格式错误，请检查后重试。");
         return;
     }
@@ -102,9 +106,6 @@ closeBotton.click(() => {
     $("#edit_card").hide("quick");
 });
 
-// function setEnglish() {
-//     alert(1);
-// }
 
 async function fetchAsync(url) {
     let response = await fetch(url);
@@ -113,15 +114,17 @@ async function fetchAsync(url) {
 }
 
 $(() => { // init
-    $.ajax("saying", {
-        dataType: 'text',
-        success: (data, status) => {
-            $("#saying").text(data);
-        },
-        error: (xhr, status, error) => {
-            console.log(error);
-        }
-    })
+    if ($("html").attr("lang") != "en") {
+        $.ajax("saying", {
+            dataType: 'text',
+            success: (data, status) => {
+                $("#saying").text(data);
+            },
+            error: (xhr, status, error) => {
+                console.log(error);
+            }
+        })
+    }
 
     window.setInterval(countdown, 7); // 延迟取7ms而非1ms，这样可以提高性能，反正肉眼无法分辨awa
 })

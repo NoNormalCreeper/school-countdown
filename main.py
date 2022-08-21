@@ -18,6 +18,11 @@ def debug():
 def index():
     return render_template("index.html")
 
+
+@app.route("/en")
+def en():
+    return render_template("index_en.html")
+
 @app.route("/covid_api", methods=["GET"])
 def covid_api():
     c=getSaying.getCurrentConfirmedCount()
