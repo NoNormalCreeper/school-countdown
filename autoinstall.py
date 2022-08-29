@@ -8,4 +8,4 @@ libs=[
 import os
 
 for lib in libs:
-    os.system("pip install " + lib)
+    os.system(f"pip install {lib}")
