@@ -26,11 +26,7 @@ def en():
 @app.route("/covid_api", methods=["GET"])
 def covid_api():
     c=getSaying.getCurrentConfirmedCount()
-    data={
-        "ccc":c['current_confirmed'],
-        "ut": c['update_time']
-    }
-    return data
+    return {"ccc": c['current_confirmed'], "ut": c['update_time']}
 
 @app.route("/saying", methods=["GET"])
 def _() -> str:
