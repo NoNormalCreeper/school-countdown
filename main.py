@@ -2,7 +2,7 @@
 import os, time
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
-import getSaying
+import get_saying
 
 app = Flask(__name__)
 
@@ -13,8 +13,8 @@ def debug():
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    s=getSaying.getSaying()
-    c=getSaying.getCurrentConfirmedCount()
+    s=get_saying.get_saying()
+    c=get_saying.get_current_confirmed_count()
     data={
         "s":s,
     }
@@ -23,7 +23,7 @@ def index():
 
 @app.route("/covid_api", methods=["GET"])
 def covid_api():
-    c=getSaying.getCurrentConfirmedCount()
+    c=get_saying.get_current_confirmed_count()
     data={
         "ccc":c['current_confirmed'],
         "ut": c['update_time']

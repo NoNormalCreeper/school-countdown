@@ -2,7 +2,7 @@ import requests
 import ujson as json
 import time
 
-def getSaying():
+def get_saying():
     url="https://v1.hitokoto.cn/?encode.json"
     try:
         r=requests.get(url)
@@ -12,7 +12,7 @@ def getSaying():
     except:
         return "「作业做完了吗？」\t——李铭远"
 
-def getCurrentConfirmedCount():
+def get_current_confirmed_count():
     url="https://lab.isaaclin.cn/nCoV/api/area?province=广东省"
     time_zone=+8
     try:
