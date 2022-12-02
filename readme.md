@@ -27,8 +27,8 @@ Contributions are welcome, including but not limited to **improvements**, **new 
 
 ## Todo
 - Fix known bugs
-    - When the date input are illegal, the content displayed will become `NaN`.
-    - Sometimes there are problems with the page layout.
+    - ☑️ When the date input are illegal, the content displayed will become `NaN`.
+    - ☑️ Sometimes there are problems with the page layout.
 - More animes
-    - Floating animation of each element when entering the page.
+    - ☑️ Floating animation of each element when entering the page.
     - ☑️ Fade animation when closing the card of "adjust school start time".
