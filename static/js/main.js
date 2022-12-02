@@ -51,6 +51,17 @@ function countdown() {
     var leftSeconds = format(parseInt(diffTime % 60)); // 以60秒为一整份 取余 剩下秒数
     var leftMilliseconds = format(parseInt(diffTime0 % 1000));
     var percent = (100 - (diffTime0 / (timeEnd - timeStart) * 100)).toFixed(5);
+    var totalSeconds = diffTime.toFixed(3);
+
+    if (diffTime0 < 0) {
+        leftDays = 0;
+        leftHours = 0;
+        leftMinutes = 0;
+        leftSeconds = 0;
+        leftMilliseconds = 0;
+        totalSeconds = 0;
+        percent = 100;
+    }
 
     // display
     // if (holiday_end == default_holiday_end) {
@@ -66,7 +77,7 @@ function countdown() {
         "leftMin": leftMinutes,
         "leftSec": leftSeconds,
         "leftMs": leftMilliseconds,
-        "totalSec": ((diffTime.toFixed(3)).toLocaleString()),
+        "totalSec": totalSeconds.toLocaleString(),
         "holidayEndTime": `(${timeEnd.Format("yyyy/MM/dd HH:mm:ss")})`
     });
 
