@@ -4,7 +4,7 @@ from sys import argv
 from getopt import getopt
 from flask import Flask, render_template, request, url_for, redirect, session
 from flask_bootstrap import Bootstrap
-import getSaying
+import get_saying
 
 
 app = Flask(__name__)
