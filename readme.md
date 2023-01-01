@@ -27,8 +27,10 @@ Contributions are welcome, including but not limited to **improvements**, **new 
 
 ## Todo
 - Fix known bugs
-    - ☑️ When the date input are illegal, the content displayed will become `NaN`.
-    - ☑️ Sometimes there are problems with the page layout.
+    - [x] When the date input are illegal, the content displayed will become `NaN`.
+    - [x] Sometimes there are problems with the page layout.
 - More animes
-    - ☑️ Floating animation of each element when entering the page.
-    - ☑️ Fade animation when closing the card of "adjust school start time".
+    - [x] Floating animation of each element when entering the page.
+    - [x] Fade animation when closing the card of "adjust school start time".
+- Reactor
+    - [ ] Rewrite the whole server logic in JS and run in front-end completely, taking place of Jinja server.
