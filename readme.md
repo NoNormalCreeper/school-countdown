@@ -32,5 +32,5 @@ Contributions are welcome, including but not limited to **improvements**, **new 
 - More animes
     - [x] Floating animation of each element when entering the page.
     - [x] Fade animation when closing the card of "adjust school start time".
-- Reactor
+- Reconstruct
     - [ ] Rewrite the whole server logic in JS and run in front-end completely, taking place of Jinja server.
